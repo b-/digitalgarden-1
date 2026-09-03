@@ -56,6 +56,7 @@
         "src/site/_includes/components/references.njk",
         "src/site/_includes/components/sidebar.njk",
         "src/site/_includes/components/pagePanelButton.njk",
+        "src/site/_includes/components/floatingActions.njk",
         "src/site/_includes/components/graphScript.njk",
         "src/site/_includes/components/navbar.njk",
         "src/site/_includes/components/calloutScript.njk",

@@ -550,11 +550,32 @@ body:has(.content.canvas-page) .sidebar {
     }
 }
 
+// Floating action stack: fixed to the bottom-right corner and filled from the
+// corner upward (column-reverse). Core renders the page panel toggle here and
+// plugins add to it through the floating.bottomRight slot. The container
+// ignores pointer events so an empty stack never blocks the page beneath it.
+.floating-actions {
+    position: fixed;
+    right: 1rem;
+    bottom: calc(1rem + env(safe-area-inset-bottom));
+    z-index: 19;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    gap: 0.5rem;
+    pointer-events: none;
+
+    > * {
+        pointer-events: auto;
+    }
+}
+
 // Page panel: whenever the sidebar does not fit beside the content (below
 // 1400px) it becomes a bottom sheet opened from .page-panel-toggle. On phones
 // the toggle sits in the navbar; between 1000px and 1400px with the filetree
-// on there is no navbar, so a floating toggle (.page-panel-fab) is shown
-// instead. Backdrop, handle and close button only exist on the sheet.
+// on there is no navbar, so the floating toggle (.page-panel-fab, in
+// .floating-actions) is shown instead. Backdrop, handle and close button
+// only exist on the sheet.
 .page-panel-toggle,
 .page-panel-backdrop,
 .page-panel-header {
@@ -589,10 +610,6 @@ body:has(.content.canvas-page) .sidebar {
     }
 
     .page-panel-toggle.page-panel-fab {
-        position: fixed;
-        right: 1rem;
-        bottom: 1rem;
-        z-index: 19;
         width: 48px;
         height: 48px;
         margin: 0;
@@ -603,12 +620,6 @@ body:has(.content.canvas-page) .sidebar {
             width: 20px;
             height: 20px;
         }
-    }
-
-    // Forestry hosting pins its own UI (e.g. the "Powered by" badge) to the
-    // bottom-right corner; stack the toggle above it instead of overlapping.
-    body:has(.forestry-fixed-ui[data-fixed-position="bottom-right"]) .page-panel-toggle.page-panel-fab {
-        bottom: 3.25rem;
     }
 
     .page-panel-toggle {

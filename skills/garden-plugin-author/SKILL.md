@@ -75,6 +75,7 @@ slots render unconditionally.
 | `filetree.actions` | filetree sidebar below the site title |
 | `filetree.beforeTitle` / `filetree.afterTitle` | around the filetree site title |
 | `sidebar.top` / `sidebar.bottom` | right-hand sidebar |
+| `floating.bottomRight` | fixed stack in the bottom-right corner, filled from the corner upward; core's page panel toggle sits nearest the corner. Render **one element** per template (a button or link), it becomes a flex item and stacks above the previous one |
 
 Manifest form: `"slots": { "<slot>": "file.njk" }` or a list of files.
 Use `common.footer` for anything with a `<script>` or overlay markup.

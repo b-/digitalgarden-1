@@ -51,6 +51,7 @@ const KNOWN_SLOTS = new Set([
   "sidebar.top",
   "sidebar.bottom",
   "navbar.actions",
+  "floating.bottomRight",
 ]);
 
 /**
