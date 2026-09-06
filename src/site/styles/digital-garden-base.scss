@@ -570,6 +570,13 @@ body:has(.content.canvas-page) .sidebar {
     }
 }
 
+// Gardens created before the floating stack may still carry Forestry's
+// legacy "Powered by" footer component, which pins itself to the same corner.
+// Lift the stack above it so the page panel toggle stays reachable.
+body:has(.forestry-fixed-ui[data-fixed-position="bottom-right"]) .floating-actions {
+    bottom: calc(3.25rem + env(safe-area-inset-bottom));
+}
+
 // Page panel: whenever the sidebar does not fit beside the content (below
 // 1400px) it becomes a bottom sheet opened from .page-panel-toggle. On phones
 // the toggle sits in the navbar; between 1000px and 1400px with the filetree
