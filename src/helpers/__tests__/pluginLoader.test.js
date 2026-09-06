@@ -139,6 +139,13 @@ describe("getTemplateData", () => {
 		expect(data.enabled).toEqual(["beta"]);
 		expect(data.settings.alpha).toBeUndefined();
 	});
+
+	it("renders plugins in the owner's registry order, then by id", () => {
+		// plugins.json: one=5, three=-1, two="not a number" (ignored -> 0)
+		const data = getTemplateData({ root: fixtureRoot("plugins-order"), force: true });
+		expect(data.enabled).toEqual(["three", "two", "one"]);
+		expect(data.slots["common.footer"].map((entry) => entry.pluginId)).toEqual(["three", "two", "one"]);
+	});
 });
 
 describe("regions", () => {

@@ -80,6 +80,12 @@ slots render unconditionally.
 Manifest form: `"slots": { "<slot>": "file.njk" }` or a list of files.
 Use `common.footer` for anything with a `<script>` or overlay markup.
 
+Render order within a slot is the site owner's call, not the plugin's:
+plugins render by the `order` number on their entry in
+`src/plugins/plugins.json` (lower first, default 0), then by id. In
+`floating.bottomRight` a lower order sits nearer the corner. Example:
+`{"plugins": {"theme-switcher": {"order": 10}, "random-note": {"order": 20}}}`.
+
 ## Regions (exclusive replacement)
 
 A region replaces a core UI area instead of adding to it — at most one
